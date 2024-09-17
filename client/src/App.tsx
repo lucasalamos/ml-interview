@@ -1,10 +1,9 @@
 import React from 'react';
-import './styles/App.css';
-
+import './styles/app.scss';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Item from './pages/Item';
-import Items from './pages/Items';
-import SearchBox from './pages/SearchBox';
+import { Items } from './pages/Items';
+import { SearchBox } from './pages/SearchBox';
 
 const App: React.FC = () => {
   return (

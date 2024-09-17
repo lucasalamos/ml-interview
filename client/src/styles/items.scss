@@ -1,0 +1,28 @@
+.items-page {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  
+    h2 {
+      margin-bottom: 1rem;
+    }
+  
+    .items {
+      .item-item {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+  
+        h3 {
+          margin-top: 0;
+          font-size: 1.2rem;
+        }
+  
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+  
