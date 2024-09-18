@@ -1,7 +1,25 @@
 import { getMercadoLibreItemGateway } from '../../ml-integration/get-item.gateway'
 import { getMercadoLibreItemDescriptionGateway } from '../../ml-integration/get-item-description.gateway'
 
-import { GetItemResponseType } from '../types/item.types'
+export interface GetItemResponseType {
+  author: {
+    name: string,
+    lastname: string
+  },
+  item: {
+    id: string, 
+    title: string, 
+    price: {
+      currency: string,
+      amount: number,
+      decimals: number
+    }, 
+    condition: string, 
+    free_shipping: boolean
+    picture: string
+    sold_quantity: number
+  }
+}
 
 export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemResponseType> => {
   try {

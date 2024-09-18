@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 
-import { GetItemsResponseType, GetItemResponseType } from './items/types/item.types'
+import { GetItemsResponseType } from './items/use-cases/get-items.use-case'
+import { GetItemResponseType } from './items/use-cases/get-item.use-case'
 import { itemController } from './items/item.controller'
 
 const app = express();
@@ -8,7 +9,7 @@ const port = 5001;
 
 app.use(express.json());
 
-app.get('/api/items', async (req: Request<{}, {}, {}, {q: string}>, res: Response<GetItemsResponseType>) => {
+app.get('/api/items', async (req: Request<{}, {}, {}, { q: string }>, res: Response<GetItemsResponseType>) => {
   const query = req.query.q
 
   if (!query) {
@@ -21,7 +22,7 @@ app.get('/api/items', async (req: Request<{}, {}, {}, {q: string}>, res: Respons
   res.json(items)
 });
 
-app.get('/api/items/:id', async (req: Request<{id: string}>, res: Response<GetItemResponseType>) => { // add type to request params
+app.get('/api/items/:id', async (req: Request<{ id: string }>, res: Response<GetItemResponseType>) => { // add type to request params
   const id = req.params.id;
 
   if (!id) {

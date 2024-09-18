@@ -1,5 +1,25 @@
-import { GetItemsResponseType } from '../types/item.types'
 import { getMercadoLibreItemsGateway } from '../../ml-integration/get-items.gateway';
+import { orderBy } from 'lodash'
+
+export interface GetItemsResponseType {
+  author: {
+    name: string,
+    lastname: string
+  },
+  categories: string[],
+  items: {
+    id: string, 
+    title: string, 
+    price: {
+      currency: string,
+      amount: number,
+      decimals: number
+    }, 
+    condition: string, 
+    free_shipping: boolean
+    picture: string
+  }[]
+}
 
 export const getItemsUseCase = async ({ query }: { query: string }): Promise<GetItemsResponseType> => {
   try {
@@ -10,10 +30,13 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
       lastname: "alamos"
     }
 
-    const categoryFilter = mercadoLibreItems.available_filters.find(({ id }) => id === "category")
-    const categories = categoryFilter ? categoryFilter.values.map(({ name }) => name) : []
+    const categoryFilter = mercadoLibreItems.available_filters.find(({ id }) => id === "category") // o usamos filters
+    const categories = categoryFilter ? orderBy(categoryFilter.values.map(({ name }) => name), 'results', 'desc') : []
 
-    const items = mercadoLibreItems.results.slice(0,4).map(({
+    //const categoryFilter2 = mercadoLibreItems.filters.find(({ id }) => id === "category") // o usamos filters
+    //const categories = // path from root
+
+    const items = mercadoLibreItems.results.map(({
       id, title, price, condition, shipping, currency_id, thumbnail
     }) => ({
           id,
