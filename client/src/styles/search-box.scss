@@ -5,53 +5,48 @@
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: #f9f9f9;
+    background-color: #f5ea4b;
     margin-top: 1rem;
+
+
+    
+
+
   
     form {
-      display: flex;
       margin-bottom: 1rem;
-  
+      display: flex;
+      max-height: 40px;
+
+      img {
+        width: 10%;
+        margin-right: 10px;
+      }
+
       input {
         flex: 1;
         padding: 0.5rem;
         border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-right: 0.5rem;
       }
   
       button {
         padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: #fff;
+        border: 1px solid #ddd;
+        background-color: #eceff1;
+        width: 10%;
         cursor: pointer;
         transition: background-color 0.3s ease;
   
         &:hover {
-          background-color: #0056b3;
+          background-color: #87898c;
         }
-      }
-    }
-  
-    .results {
-      .result-item {
-        margin-bottom: 1rem;
-        padding: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        background-color: #fff;
+
         
-        h3 {
-          margin-top: 0;
-          font-size: 1.2rem;
-        }
-  
-        p {
-          margin: 0;
-        }
+        
       }
     }
+
+    
+    
   }
   

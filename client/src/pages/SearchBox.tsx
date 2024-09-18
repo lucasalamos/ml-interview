@@ -2,6 +2,12 @@ import React, { useState, FormEvent } from 'react';
 import '../styles/search-box.scss';
 import { useNavigate } from 'react-router-dom';
 
+import LogoMLImage2  from '../assets/images/logoml.svg'
+
+
+
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+
 export const SearchBox: React.FC = () => {
   const [query, setQuery] = useState<string>('');
 
@@ -22,13 +28,16 @@ export const SearchBox: React.FC = () => {
   return (
     <div className="search-box">
       <form onSubmit={handleSubmit}>
+        <img src={LogoMLImage2} />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search..."
+          placeholder="Nunca dejes de buscar"
         />
-        <button type="submit">Search</button>
+        <button type="submit" >
+          <MagnifyingGlassIcon /> 
+        </button>
       </form>
     </div>
   );
