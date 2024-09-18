@@ -1,20 +1,37 @@
 import express, { Request, Response } from 'express';
 
+import { GetItemsResponseType, GetItemResponseType } from './items/types/item.types'
+import { itemController } from './items/item.controller'
+
 const app = express();
 const port = 5001;
 
 app.use(express.json());
 
-app.get('/api/items', (req: Request, res: Response) => {
-  const search = req.query.search as string;
-  // Implement search logic here
-  res.json({ results: [] });
+app.get('/api/items', async (req: Request<{}, {}, {}, {q: string}>, res: Response<GetItemsResponseType>) => {
+  const query = req.query.q
+
+  if (!query) {
+    //return res.status(400).json({ error: 'Query parameter is required' });
+    new Error('Query parameter bad')
+  }
+
+  const items = await itemController.getAll({ query })
+
+  res.json(items)
 });
 
-app.get('/api/items/:id', (req: Request, res: Response) => {
+app.get('/api/items/:id', async (req: Request<{id: string}>, res: Response<GetItemResponseType>) => { // add type to request params
   const id = req.params.id;
-  // Implement logic to get item details by id
-  res.json({ id });
+
+  if (!id) {
+    //return res.status(400).json({ error: 'Params is required' });
+    new Error('Params bad')
+  }
+
+  const item = await itemController.get({ id })
+
+  res.json(item);
 });
 
 app.listen(port, () => {
