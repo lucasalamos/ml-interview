@@ -38,18 +38,23 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
 
     const items = mercadoLibreItems.results.map(({
       id, title, price, condition, shipping, currency_id, thumbnail
-    }) => ({
-          id,
+    }) => {
+      const priceSplitted = price.toString().split('.')
+
+      return {
+        id,
         title,
         price: {
           currency: currency_id,
-          amount: price,
-          decimals: price - Math.floor(price)
+          amount: Math.floor(price),
+          decimals: priceSplitted.length > 1 ? parseInt(priceSplitted[1]) : 0
         },
         picture: thumbnail, 
         condition, 
         free_shipping: shipping.free_shipping, 
-    }))
+    }
+
+  })
   
     return {
       author, categories, items

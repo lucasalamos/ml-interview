@@ -36,13 +36,15 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
       lastname: "alamos"
     }
 
+    const priceSplitted = mercadoLibreItem.price.toString().split('.')
+
     const item = {
       id: mercadoLibreItem.id,
       title: mercadoLibreItem.title,
       price: {
         currency: mercadoLibreItem.currency_id,
-        amount: mercadoLibreItem.price,
-        decimals: mercadoLibreItem.price - Math.floor(mercadoLibreItem.price)
+        amount: Math.floor(mercadoLibreItem.price),
+        decimals: priceSplitted.length > 1 ? parseInt(priceSplitted[1]) : 0
       },
       picture: mercadoLibreItem.thumbnail, 
       condition: mercadoLibreItem.condition, 
