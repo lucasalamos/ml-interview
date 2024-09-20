@@ -14,15 +14,30 @@
         background-color: #f8f9fa;
     }
 
+    // height: 300px; // Set a fixed height for the container
+    // overflow: hidden; // Hide any overflow
+    // display: flex; // Optional: use flexbox for alignment
+    // justify-content: center; // Center content horizontally
+    // align-items: center;
 
-    .img {
+
+    .image {
         width: 10%;
+        //max-width: 5px;
+        object-fit: contain;
+        max-width: 100%; // Limit width to the container's width
+        max-height: 100%; 
+
+      
     }
     .info {
+        width: 80%;
         flex-grow: 1;
         align-items: left
     }
     .tag {
         width: 10%;
+        color: gray;
+        margin-top: 20px;
     }
 }

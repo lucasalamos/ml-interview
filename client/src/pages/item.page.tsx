@@ -4,6 +4,7 @@ import { Item } from '../entities/item.entity';
 import { useParams } from 'react-router-dom';
 import { SearchBox } from '../components/search-box';
 import '../styles/item-description.scss'
+import { conditionsMapper } from '../utils/conditions-mapper';
 
 export const ItemPage: React.FC = () => {
 
@@ -32,25 +33,35 @@ export const ItemPage: React.FC = () => {
         <p className='p'>Categories...</p>
 
         <div className="item-description">
-            <div className='summary'>
-              <img src={item?.picture}></img> 
-              <div>
-                <p> {item?.condition} - {item?.sold_quantity} vendidos</p>
-                <h3> {item?.title} </h3>
-                <h2> $ {item?.price.amount}.{item?.price.decimals} </h2>
-                <button>
-                  Comprar
-                </button>
+         
+          <div className='summary'>
+            <img className='image' src={item?.picture}></img> 
+
+            <div className='details'>
+              <p> {conditionsMapper[item?.condition || 'used']} - {item?.sold_quantity} vendidos</p>
+              <h3> {item?.title} </h3>
+              <div className='price'>
+                <h1> $ {item?.price.amount.toLocaleString().replace(/,/g, '.')}</h1>
+                <p> {item?.price.decimals} </p>
               </div>
-            </div>
-           
-            <div className='description'>
-              <h3>Descripción del producto</h3>
-              {item?.description}
+
+
+
+              <button className='button'>
+                Comprar
+              </button>
             </div>
           </div>
+           
+          <div className='description'>
+            <h3>Descripción del producto</h3>
+            <p className='p'>
+              {item?.description}
+            </p>
+          </div>
         </div>
-      </div>   
+       </div>
+    </div>   
   );
 };
 

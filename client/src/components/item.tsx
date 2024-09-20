@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/item.scss'
 import { Item} from '../entities/item.entity'
 import { useNavigate } from 'react-router-dom';
+import { conditionsMapper } from '../utils/conditions-mapper'
+
 
 export const ItemComponent: React.FC<{item: Item}> = ({item}) => {
 
@@ -15,11 +17,12 @@ export const ItemComponent: React.FC<{item: Item}> = ({item}) => {
 
     return (
         <div className='item' onClick={() => navigateToItem({ id: item.id })}>
-            <img src={item.picture}></img>
+            
+            <img className='image' src={item.picture}></img>
             
             <div className='info'>
                 <h3>
-                    ${item.price.amount}
+                    $ {item.price.amount.toLocaleString().replace(/,/g, '.')}
                 </h3>
                 <p>
                     {item.title}
@@ -27,7 +30,7 @@ export const ItemComponent: React.FC<{item: Item}> = ({item}) => {
             </div>
         
             <div className='tag'>
-                {item.condition}
+                {conditionsMapper[item.condition]}
             </div>
         </div>
     );
