@@ -5,7 +5,7 @@ import { ItemsPage } from './pages/items.page';
 import { ItemPage } from './pages/item.page'
 import { HomePage } from './pages/home.page';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <Router>
       <Routes>
@@ -16,7 +16,3 @@ const App: React.FC = () => {
     </Router>
   );
 };
-
-export default App;
-
-

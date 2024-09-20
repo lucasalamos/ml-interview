@@ -2,31 +2,21 @@
   font-family: 'Roboto', sans-serif; 
   width: 100%;
   text-align: start;
-
 }
 
 .header {
   padding: 1rem 4rem 1rem 4rem;
-  //margin: 0px 20px 0px 20px;
   background-color: #f5ea4b;
-  //text-align: center;
 }
 
 .content {
   padding: 1rem 4rem 1rem 4rem;
-  //margin: 0px 20px 0px 20px;
   background-color: rgb(245, 244, 244);
   text-align: center;
-
   .p {
       color: gray;
   }
-
   .items {
-    //display: flex;
     flex-wrap: wrap;
-
-    
-
   }
 }

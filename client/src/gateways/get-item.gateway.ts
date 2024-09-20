@@ -19,10 +19,9 @@ export interface GetItemResponseType {
   }
 }
   
-  export const getItemGateway = async ({id} : {id?: string}) => { //sacar el ?
-    const data = (await fetch(`http://localhost:5001/api/items/${id}`)
-        .then(response => response.json())) as GetItemResponseType
-        //.catch(error => console.error('Error fetching data:', error))
+export const getItemGateway = async ({id} : {id?: string}) => { //sacar el ?
+  const data = (await fetch(`http://localhost:5001/api/items/${id}`)
+    .then(response => response.json())) as GetItemResponseType
 
-    return data
+  return data
 }

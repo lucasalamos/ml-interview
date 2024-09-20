@@ -18,10 +18,9 @@ export interface GetItemsResponseType {
     }[]
   }
   
-  export const getItemsGateway = async ({query} : {query: string}) => {
-    const data = (await fetch(`http://localhost:5001/api/items?q=${query}`)
-        .then(response => response.json())) as GetItemsResponseType
-        //.catch(error => console.error('Error fetching data:', error))
+export const getItemsGateway = async ({query} : {query: string}) => {
+  const data = (await fetch(`http://localhost:5001/api/items?q=${query}`)
+      .then(response => response.json())) as GetItemsResponseType
 
-    return data
+  return data
 }

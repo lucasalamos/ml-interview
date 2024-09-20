@@ -1,14 +1,11 @@
 import React, { useState, FormEvent } from 'react';
-import '../styles/search-box.scss';
 import { useNavigate } from 'react-router-dom';
 import LogoMLImage  from '../assets/images/logoml.svg'
-
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import '../styles/search-box.scss';
 
 export const SearchBox: React.FC<{defaultValue? : string}> = ({defaultValue}) => {
   const [query, setQuery] = useState<string>(defaultValue || '');
-
-
   const navigate = useNavigate();
 
   const navigateToHome = () => {
@@ -19,7 +16,6 @@ export const SearchBox: React.FC<{defaultValue? : string}> = ({defaultValue}) =>
     e.preventDefault();
     try {
       if (query.trim()) {
-        // Navigate to the results page with the query as a URL parameter
         navigate(`/items?search=${encodeURIComponent(query)}`);
       }
     } catch (error) {
@@ -40,13 +36,9 @@ export const SearchBox: React.FC<{defaultValue? : string}> = ({defaultValue}) =>
         <button type="submit" >
           <div className='icon'>
           <MagnifyingGlassIcon /> 
-
           </div>
         </button>
       </form>
     </div>
   );
 };
-
-
-

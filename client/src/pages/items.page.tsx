@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { SearchBox } from '../components/search-box';
 import { getItemsGateway } from '../gateways/get-items.gateway';
 import { Item } from '../entities/item.entity';
-import { ItemComponent } from '../components/item';
+import { ItemPreview } from '../components/item-preview';
 
 export const ItemsPage: React.FC = () => {
 
@@ -26,22 +26,16 @@ export const ItemsPage: React.FC = () => {
     }
   });
 
-  console.log('items', items)
-
-
   return (
     <div>
       <div className='header'>
         <SearchBox defaultValue={query}/>
       </div>
-
       <div className="content">
         <p className='p'>{categories}</p>
-
-
         <div className="items">
             {items.map((item) => (
-                <ItemComponent item={item} key={item.id}/>
+                <ItemPreview item={item} key={item.id}/>
             ))}
         </div>
       </div>        
