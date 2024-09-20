@@ -1,19 +1,21 @@
 .app {
   font-family: 'Roboto', sans-serif; 
   width: 100%;
+  text-align: start;
+
 }
 
 .header {
   padding: 1rem 4rem 1rem 4rem;
   //margin: 0px 20px 0px 20px;
   background-color: #f5ea4b;
-  text-align: center;
+  //text-align: center;
 }
 
 .content {
   padding: 1rem 4rem 1rem 4rem;
   //margin: 0px 20px 0px 20px;
-  background-color: rgb(228, 226, 226);
+  background-color: rgb(245, 244, 244);
   text-align: center;
 
   .p {
@@ -23,14 +25,6 @@
   .items {
     //display: flex;
     flex-wrap: wrap;
-  
-    .item {
-        background-color: white;
-        border: 0.5px solid #ddd;
-        //border-radius: 4px;
-        padding: 1rem;
-        //margin: 0.5rem;
-        flex: 1 1 100px; // Adjusts the item size
-    }
+
   }
 }

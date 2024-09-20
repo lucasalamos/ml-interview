@@ -1,0 +1,28 @@
+.item {
+    background-color: white;
+    border: 0.5px solid #ddd;
+    //border-radius: 4px;
+    padding: 1rem;
+    //margin: 0.5rem;
+    display: flex; //1 1 100px; // Adjusts the item size
+    gap: 40px;
+    text-align: start;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #f8f9fa;
+    }
+
+
+    .img {
+        width: 10%;
+    }
+    .info {
+        flex-grow: 1;
+        align-items: left
+    }
+    .tag {
+        width: 10%;
+    }
+}
