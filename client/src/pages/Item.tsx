@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Item: React.FC = () => {
+export const ItemPage: React.FC = () => {
   return (
     <div>
       <h1>Item 1</h1>
@@ -9,4 +9,3 @@ const Item: React.FC = () => {
   );
 };
 
-export default Item;

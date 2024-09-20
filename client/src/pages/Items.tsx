@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/items.scss'
 import { useLocation , useNavigate } from 'react-router-dom';
+import { SearchBox } from '../components/search-box';
+import { Items } from '../components/items';
+import { getItemsGateway } from '../gateways/get-items.gateway';
 
-interface Item {
-  id: number;
-  title: string;
-  body: string;
+export interface Item { // esto no va aca
+  id: string, 
+  title: string, 
+  price: {
+      currency: string,
+      amount: number,
+      decimals: number
+  }, 
+  condition: string, 
+  free_shipping: boolean
+  picture: string
 }
 
-export const Items: React.FC = () => {
-  const [items, setItems] = useState<Item[]>([]);
+export const ItemsPage: React.FC = () => {
+
   const location = useLocation();
   const navigate = useNavigate();
+  
+  const params = new URLSearchParams(location.search);
+  const query = params.get('search') || '';
+
+  const [items, setItems] = useState<Item[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const navigateToItem = ({id} : {id: number}) => {
     navigate(`/items/${id}`)
@@ -20,34 +35,42 @@ export const Items: React.FC = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const query = params.get('search') || '';
+
+    const getItems = async () => {
+      const itemsResponse = await getItemsGateway({query})
+      setItems(itemsResponse.items.slice(0,4))
+      setCategories(itemsResponse.categories)
+    }
+
     if (query) {
-      // fetch(`https://jsonplaceholder.typicode.com/posts?title_like=${query}`)
-      //   .then(response => response.json())
-      //   .then(data => setResults(data))
-      //   .catch(error => console.error('Error fetching data:', error));
-      console.log('holaa', query)
-      setItems([
-        {
-          id: 4,
-          title: query,
-          body: 'mybody'
-        }
-      ])
+      getItems()
+      
     }
   }, [location.search]);
 
+  console.log('items', items)
+
+
   return (
-    <div className="items-page">
-      <h2>Items</h2>
-      <div className="items">
-        {items.map((item) => (
-          <div key={item.id} className="item-item" onClick={() => navigateToItem({id: item.id})}>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </div>
-        ))}
+    <div>
+      <div className='header'>
+        <SearchBox defaultValue={query}/>
       </div>
+
+      <div className="content">
+        <p className='p'>Category1, Category2</p>
+
+
+        <div className="items">
+            {items.map((item) => (
+                <div key={item.id} className="item">
+                    <img src={item.picture}>
+                    </img>
+                    {item.title}
+                </div>
+            ))}
+        </div>
+      </div>        
     </div>
   );
 };
-
