@@ -18,6 +18,7 @@ export interface GetItemResponseType {
     free_shipping: boolean
     picture: string
     sold_quantity: number
+    description: string
   }
 }
 

@@ -4,10 +4,13 @@ import { GetItemsResponseType } from './items/use-cases/get-items.use-case'
 import { GetItemResponseType } from './items/use-cases/get-item.use-case'
 import { itemController } from './items/item.controller'
 
+import cors from 'cors'
+
 const app = express();
 const port = 5001;
 
 app.use(express.json());
+app.use(cors())
 
 app.get('/api/items', async (req: Request<{}, {}, {}, { q: string }>, res: Response<GetItemsResponseType>) => {
   const query = req.query.q
