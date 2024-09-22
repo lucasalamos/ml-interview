@@ -11,4 +11,5 @@ export type Item = {
     picture: string
     sold_quantity?: number
     description?: string
+    categories?: string[]
   }

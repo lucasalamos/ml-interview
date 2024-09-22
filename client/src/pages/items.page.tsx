@@ -32,7 +32,7 @@ export const ItemsPage: React.FC = () => {
         <SearchBox defaultValue={query}/>
       </div>
       <div className="content">
-        <p className='p'>{categories}</p>
+        <p className='p'>{categories.join(" > ")}</p>
         <div className="items">
             {items.map((item) => (
                 <ItemPreview item={item} key={item.id}/>

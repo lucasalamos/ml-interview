@@ -1,5 +1,6 @@
 import { getMercadoLibreItemGateway } from '../../ml-integration/get-item.gateway'
 import { getMercadoLibreItemDescriptionGateway } from '../../ml-integration/get-item-description.gateway'
+import { getMercadoLibreCategoryGateway } from '../../ml-integration/get-category.gateway'
 
 export interface GetItemResponseType {
   author: {
@@ -19,6 +20,7 @@ export interface GetItemResponseType {
     picture: string
     sold_quantity: number
     description: string
+    categories: string[] // no va en el enunciado
   }
 }
 
@@ -30,6 +32,9 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
         getMercadoLibreItemDescriptionGateway({ id})
       ]
     )
+
+    const mercadoLibreCategories = await getMercadoLibreCategoryGateway({ id: mercadoLibreItem.category_id})
+    const categories = mercadoLibreCategories.path_from_root.map((category) => category.name)
 
     const author = {
       name: "lucas",
@@ -50,7 +55,8 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
       condition: mercadoLibreItem.condition, 
       free_shipping: mercadoLibreItem.shipping.free_shipping, 
       sold_quantity: mercadoLibreItem.initial_quantity,
-      description: mercadoLibreItemDescription.plain_text
+      description: mercadoLibreItemDescription.plain_text,
+      categories
     }
   
     return { author, item }

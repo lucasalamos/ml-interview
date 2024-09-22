@@ -1,13 +1,16 @@
 import axios from 'axios';
 
 export interface GetMLItemsResponseType {
-    available_filters: {
+    filters: {
       id: string,
       name: string,
       values: {
         id: string,
         name: string
-        results: number
+        path_from_root: {
+          id: string,
+          name: string
+        }[]
       }[]
     }[],
     results: {

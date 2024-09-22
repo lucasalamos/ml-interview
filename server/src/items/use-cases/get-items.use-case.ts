@@ -25,16 +25,13 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
   try {
     const mercadoLibreItems = await getMercadoLibreItemsGateway({ query })
 
-    const author = {
+    const author = { //change de aca
       name: "lucas",
       lastname: "alamos"
     }
 
-    const categoryFilter = mercadoLibreItems.available_filters.find(({ id }) => id === "category") // o usamos filters
-    const categories = categoryFilter ? orderBy(categoryFilter.values.map(({ name }) => name), 'results', 'desc') : []
-
-    //const categoryFilter2 = mercadoLibreItems.filters.find(({ id }) => id === "category") // o usamos filters
-    //const categories = // path from root
+    const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === "category") // o usamos filters
+    const categories = categoryFilter ? categoryFilter.values[0].path_from_root.map((category) => category.name): []
 
     const items = mercadoLibreItems.results.map(({
       id, title, price, condition, shipping, currency_id, thumbnail

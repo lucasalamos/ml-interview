@@ -11,6 +11,7 @@ export interface GetMLItemResponseType {
     currency_id: string, 
     thumbnail: string
     initial_quantity: number
+    category_id: string
 }
 
 export const getMercadoLibreItemGateway = async ({ id }: { id: string }) => {

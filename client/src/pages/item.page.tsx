@@ -30,10 +30,10 @@ export const ItemPage: React.FC = () => {
         <SearchBox />
       </div>
       <div className="content">
-        <p className='p'>Categories...</p>
+        <p className='p'>{item?.categories?.join(" > ")}</p>
         <div className="item">
           <div className='summary'>
-            <img className='image' src={item?.picture}></img> 
+            <img className='image' src={item?.picture} alt='item-image'></img> 
             <div className='details'>
               <p> {conditionsMapper[item?.condition || 'used']} - {item?.sold_quantity} vendidos</p>
               <h3> {item?.title} </h3>
