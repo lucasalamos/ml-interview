@@ -35,7 +35,7 @@ export const SearchBox: React.FC<{defaultValue? : string}> = ({defaultValue}) =>
         />
         <button type="submit" >
           <div className='icon'>
-          <MagnifyingGlassIcon /> 
+            <MagnifyingGlassIcon /> 
           </div>
         </button>
       </form>
