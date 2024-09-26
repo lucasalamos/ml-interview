@@ -12,4 +12,3 @@ export const Layout: React.FC<{header: React.ReactNode, content: React.ReactNode
     </div>  
   );
 };
-

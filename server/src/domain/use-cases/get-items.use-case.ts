@@ -26,7 +26,9 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
     const mercadoLibreItems = await getMercadoLibreItemsGateway({ query })
 
     const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === 'category') 
-    const categories = categoryFilter ? categoryFilter.values[0].path_from_root.map((category) => category.name): []
+    const categories = categoryFilter ? 
+      categoryFilter.values[0].path_from_root.map((category) => category.name) : 
+      []
 
     const items = mercadoLibreItems.results.map(({
       id, title, price, condition, shipping, currency_id, thumbnail

@@ -8,6 +8,7 @@ Bienvenido al proyecto **ml-interview**. Aquí encontrarás la implementación d
 
 ```bash
 cd client
+npm install
 npm run start
 ```
 
@@ -15,6 +16,7 @@ npm run start
 
 ```bash
 cd server
+npm install
 npm run start
 ```
 

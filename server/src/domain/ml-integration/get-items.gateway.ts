@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { mlApiUrl } from './api';
 
 export interface GetMLItemsResponseType {
     filters: {
@@ -28,7 +29,7 @@ export interface GetMLItemsResponseType {
 
 export const getMercadoLibreItemsGateway = async ({ query }: { query: string }) => {
   try {
-    const response = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(query)}`)
+    const response = await axios.get(`${mlApiUrl}/sites/MLA/search?q=${encodeURIComponent(query)}`)
     
     return response.data as GetMLItemsResponseType
   } catch (error) {

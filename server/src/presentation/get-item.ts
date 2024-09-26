@@ -3,7 +3,10 @@ import { Request, Response } from 'express';
 import { GetItemResponseType } from '../domain/use-cases/get-item.use-case';
 import { itemController } from '../domain/item.controller';
 
-export const getItem = async (req: Request<{ id: string }>, res: Response<GetItemResponseType | {error: string}>) => {
+export const getItem = async (
+    req: Request<{ id: string }>, 
+    res: Response<GetItemResponseType | {error: string}>
+  ) => {
   const id = req.params.id;
 
   if (!id) {
@@ -18,5 +21,3 @@ export const getItem = async (req: Request<{ id: string }>, res: Response<GetIte
     res.status(500).json( {error: 'Internal Server Error'} );
   }
 };
-
-

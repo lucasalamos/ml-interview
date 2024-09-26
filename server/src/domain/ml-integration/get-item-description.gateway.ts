@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { mlApiUrl } from './api';
 
 export interface GetMLItemDescriptionResponseType {
     plain_text: string, 
@@ -7,7 +8,7 @@ export interface GetMLItemDescriptionResponseType {
 
 export const getMercadoLibreItemDescriptionGateway = async ({ id }: { id: string }) => {
     try {
-        const response = await axios.get(`https://api.mercadolibre.com/items/${id}/description`) 
+        const response = await axios.get(`${mlApiUrl}/items/${id}/description`) 
 
         return response.data as GetMLItemDescriptionResponseType
     } catch (error) {

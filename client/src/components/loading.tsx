@@ -6,4 +6,3 @@ export const Loading: React.FC = () => {
     <div className='loading'></div>
   );
 };
-

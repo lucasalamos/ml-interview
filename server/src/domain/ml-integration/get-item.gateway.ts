@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { mlApiUrl } from './api';
 
 export interface GetMLItemResponseType {
     id: string, 
@@ -15,7 +16,7 @@ export interface GetMLItemResponseType {
 
 export const getMercadoLibreItemGateway = async ({ id }: { id: string }): Promise<GetMLItemResponseType>  => {
     try {
-        const response = await axios.get(`https://api.mercadolibre.com/items/${id}`)
+        const response = await axios.get(`${mlApiUrl}/items/${id}`)
 
         return response.data as GetMLItemResponseType
     } catch (error) {

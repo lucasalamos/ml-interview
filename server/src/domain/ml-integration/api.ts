@@ -1,0 +1,1 @@
+export const mlApiUrl = 'https://api.mercadolibre.com'
