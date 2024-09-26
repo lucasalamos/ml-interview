@@ -1,18 +1,21 @@
 import React, { useEffect, useState }  from 'react';
-import { getItemGateway } from '../gateways/get-item.gateway';
+import { getItemGateway, GetItemResponseType } from '../gateways/get-item.gateway';
 import { Item } from '../entities/item.entity';
 import { useParams } from 'react-router-dom';
-import { SearchBox } from '../components/search-box';
-import '../styles/item.scss'
 import { conditionsMapper } from '../utils/conditions-mapper';
 import { useCategoryContext } from '../context/category.context';
 import { Loading } from '../components/loading';
+import { Layout } from '../components/layout';
+import { Error } from '../components/error';
+import { SearchBox } from '../components/search-box';
+import '../styles/item.scss'
 
 export const ItemPage: React.FC = () => {
 
   const { id } = useParams<{ id: string }>();
   const [item, setItem] = useState<Item>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const { categoryContext } = useCategoryContext();
 
@@ -20,23 +23,42 @@ export const ItemPage: React.FC = () => {
     setIsLoading(true)
     const getItem = async () => {
       const itemResponse = await getItemGateway({id})
-      setItem(itemResponse.item)
-      setIsLoading(false)
+
+      if ('error' in itemResponse) {
+        setError(itemResponse.error);
+      } else {
+        setItem(itemResponse.item)
+      }
+      setIsLoading(false);      
     }
+
     if (id) {
       getItem() 
     }
   }, [id]);
 
+  const header = <SearchBox />
+
+  if (error) {
+    return (
+      <Layout
+        header={header}
+        content={<Error />}
+      />)
+  }
+
+  if (isLoading) {
+    return (
+      <Layout
+        header={header}
+        content={<Loading />}
+      />)
+  }
+
   return (
-    <div>
-      <div className='header'>
-        <SearchBox />
-      </div>
-      <div className="content">
-        {isLoading ? 
-          <Loading />  
-      : (
+    <Layout
+      header={header}
+      content={(
         <div>
           <p className='p'>{categoryContext.join(" - ")}</p>
           <div className="item">
@@ -62,8 +84,6 @@ export const ItemPage: React.FC = () => {
             </div>
           </div>
         </div>
-        )}
-       </div>
-    </div>   
-  );
+      )}  
+    />)
 };

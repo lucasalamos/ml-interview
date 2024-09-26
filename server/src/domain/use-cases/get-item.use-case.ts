@@ -1,6 +1,5 @@
-import { getMercadoLibreItemGateway } from '../../ml-integration/get-item.gateway'
-import { getMercadoLibreItemDescriptionGateway } from '../../ml-integration/get-item-description.gateway'
-import { getMercadoLibreCategoryGateway } from '../../ml-integration/get-category.gateway'
+import { getMercadoLibreItemGateway, GetMLItemResponseType } from '../ml-integration/get-item.gateway'
+import { getMercadoLibreItemDescriptionGateway } from '../ml-integration/get-item-description.gateway'
 
 export interface GetItemResponseType {
   author: {
@@ -20,7 +19,6 @@ export interface GetItemResponseType {
     picture: string
     sold_quantity: number
     description: string
-    categories: string[] // no va en el enunciado
   }
 }
 
@@ -29,12 +27,9 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
     const [ mercadoLibreItem, mercadoLibreItemDescription ] = await Promise.all(
       [ 
         getMercadoLibreItemGateway({ id }),
-        getMercadoLibreItemDescriptionGateway({ id})
+        getMercadoLibreItemDescriptionGateway({ id })
       ]
     )
-
-    const mercadoLibreCategories = await getMercadoLibreCategoryGateway({ id: mercadoLibreItem.category_id})
-    const categories = mercadoLibreCategories.path_from_root.map((category) => category.name)
 
     const author = {
       name: "lucas",
@@ -56,13 +51,10 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
       free_shipping: mercadoLibreItem.shipping.free_shipping, 
       sold_quantity: mercadoLibreItem.initial_quantity,
       description: mercadoLibreItemDescription.plain_text,
-      categories
     }
   
     return { author, item }
   } catch (error) {
-    console.error('Error fetching data:', error);
-    //res.status(500).json({ error: 'Failed to fetch data' });
-    throw new Error('Error fetching data')
+    throw new Error(error as string)
   }
 }

@@ -27,7 +27,12 @@ export interface GetMLItemsResponseType {
   }
 
 export const getMercadoLibreItemsGateway = async ({ query }: { query: string }) => {
-    const response = (await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(query)}`)).data as GetMLItemsResponseType
+  try {
+    const response = await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${encodeURIComponent(query)}`)
+    
+    return response.data as GetMLItemsResponseType
+  } catch (error) {
 
-    return response
+    throw new Error(error as string)
+  }
 }

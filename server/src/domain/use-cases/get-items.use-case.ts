@@ -1,5 +1,4 @@
-import { getMercadoLibreItemsGateway } from '../../ml-integration/get-items.gateway';
-import { orderBy } from 'lodash'
+import { getMercadoLibreItemsGateway } from '../ml-integration/get-items.gateway';
 
 export interface GetItemsResponseType {
   author: {
@@ -25,12 +24,12 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
   try {
     const mercadoLibreItems = await getMercadoLibreItemsGateway({ query })
 
-    const author = { //change de aca
+    const author = {
       name: "lucas",
       lastname: "alamos"
     }
 
-    const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === "category") // o usamos filters
+    const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === "category") 
     const categories = categoryFilter ? categoryFilter.values[0].path_from_root.map((category) => category.name): []
 
     const items = mercadoLibreItems.results.map(({
@@ -57,8 +56,7 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
       author, categories, items
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
-    //res.status(500).json({ error: 'Failed to fetch data' });
-    throw new Error('Error fetching data')
+    throw new Error(error as string)
+
   }
 }

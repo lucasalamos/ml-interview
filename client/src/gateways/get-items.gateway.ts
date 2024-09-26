@@ -1,3 +1,6 @@
+import { apiUrl } from "./api"
+import { ErrorResponse } from "./error"
+
 export interface GetItemsResponseType {
     author: {
       name: string,
@@ -19,8 +22,8 @@ export interface GetItemsResponseType {
   }
   
 export const getItemsGateway = async ({query} : {query: string}) => {
-  const data = (await fetch(`http://localhost:5001/api/items?q=${query}`)
-      .then(response => response.json())) as GetItemsResponseType
+  const data = (await fetch(`${apiUrl}/items?q=${query}`)
+      .then(response => response.json())) as GetItemsResponseType |  ErrorResponse
 
   return data
 }

@@ -1,3 +1,6 @@
+import { apiUrl } from "./api"
+import { ErrorResponse } from "./error"
+
 export interface GetItemResponseType {
   author: {
     name: string,
@@ -19,9 +22,9 @@ export interface GetItemResponseType {
   }
 }
   
-export const getItemGateway = async ({id} : {id?: string}) => { //sacar el ?
-  const data = (await fetch(`http://localhost:5001/api/items/${id}`)
-    .then(response => response.json())) as GetItemResponseType
-
-  return data
+export const getItemGateway = async ({id} : {id?: string}) => { 
+    const data = (await fetch(`${apiUrl}/items/${id}`)
+    .then(response => response.json())) as GetItemResponseType | ErrorResponse
+   
+    return data
 }
