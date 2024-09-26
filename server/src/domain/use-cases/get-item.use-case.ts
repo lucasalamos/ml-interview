@@ -1,5 +1,6 @@
-import { getMercadoLibreItemGateway, GetMLItemResponseType } from '../ml-integration/get-item.gateway'
+import { getMercadoLibreItemGateway } from '../ml-integration/get-item.gateway'
 import { getMercadoLibreItemDescriptionGateway } from '../ml-integration/get-item-description.gateway'
+import { author } from './utils/author'
 
 export interface GetItemResponseType {
   author: {
@@ -30,11 +31,6 @@ export const getItemUseCase = async ({ id }: { id: string }): Promise<GetItemRes
         getMercadoLibreItemDescriptionGateway({ id })
       ]
     )
-
-    const author = {
-      name: "lucas",
-      lastname: "alamos"
-    }
 
     const priceSplitted = mercadoLibreItem.price.toString().split('.')
 

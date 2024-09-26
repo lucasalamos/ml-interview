@@ -1,4 +1,5 @@
 import { getMercadoLibreItemsGateway } from '../ml-integration/get-items.gateway';
+import { author } from './utils/author';
 
 export interface GetItemsResponseType {
   author: {
@@ -24,12 +25,7 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
   try {
     const mercadoLibreItems = await getMercadoLibreItemsGateway({ query })
 
-    const author = {
-      name: "lucas",
-      lastname: "alamos"
-    }
-
-    const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === "category") 
+    const categoryFilter = mercadoLibreItems.filters.find(({ id }) => id === 'category') 
     const categories = categoryFilter ? categoryFilter.values[0].path_from_root.map((category) => category.name): []
 
     const items = mercadoLibreItems.results.map(({
@@ -57,6 +53,5 @@ export const getItemsUseCase = async ({ query }: { query: string }): Promise<Get
     }
   } catch (error) {
     throw new Error(error as string)
-
   }
 }

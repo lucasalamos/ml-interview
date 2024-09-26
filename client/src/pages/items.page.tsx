@@ -60,13 +60,25 @@ export const ItemsPage: React.FC = () => {
       />)
   }
 
+  if (!items.length) {
+    return (
+      <Layout
+        header={header}
+        content={
+          <div>
+            No se han encontrado items
+          </div>
+        }
+      />)
+  }
+
   return (
     <Layout
       header={header} 
       content={
         <div>
-          <p className='p'>{categories.join(" > ")}</p>
-          <div className="items">
+          <p className='p'>{categories.join(' > ')}</p>
+          <div className='items'>
               {items.map((item) => (
                   <ItemPreview item={item} key={item.id}/>
               ))}

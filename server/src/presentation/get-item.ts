@@ -7,15 +7,15 @@ export const getItem = async (req: Request<{ id: string }>, res: Response<GetIte
   const id = req.params.id;
 
   if (!id) {
-    res.status(400).json( {error: "Params is required"} );
+    res.status(400).json( {error: 'Params is required'} );
   }
-  
+
   try {
     const item = await itemController.get({ id })
 
     res.json(item);
   } catch (error) {
-    res.status(500).json( {error: "Internal Server Error"} );
+    res.status(500).json( {error: 'Internal Server Error'} );
   }
 };
 

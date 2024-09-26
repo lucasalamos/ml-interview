@@ -3,7 +3,7 @@ import '../styles/loading.scss'
 
 export const Loading: React.FC = () => {
   return (
-    <div className="loading"></div>
+    <div className='loading'></div>
   );
 };
 

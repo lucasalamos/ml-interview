@@ -15,7 +15,7 @@ export const getItems = async (req: Request<{}, {}, {}, { q: string }>, res: Res
 
     res.json(items);
   } catch (error) {
-    res.status(500).json( {error: "Internal Server Error"} );
+    res.status(500).json( {error: 'Internal Server Error'} );
   }
 };
 

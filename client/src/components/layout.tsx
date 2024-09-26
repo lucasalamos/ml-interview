@@ -6,7 +6,7 @@ export const Layout: React.FC<{header: React.ReactNode, content: React.ReactNode
       <div className='header'>
         {header}
       </div>
-      <div className="content">
+      <div className='content'>
         {content} 
       </div>  
     </div>  

@@ -24,16 +24,16 @@ export const SearchBox: React.FC<{defaultValue? : string}> = ({defaultValue}) =>
   };
 
   return (
-    <div className="search-box">
+    <div className='search-box'>
       <form onSubmit={handleSubmit}>
         <img src={LogoMLImage} onClick={navigateToHome}/>
         <input
-          type="text"
+          type='text'
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Nunca dejes de buscar"
+          placeholder='Nunca dejes de buscar'
         />
-        <button type="submit" >
+        <button type='submit' >
           <div className='icon'>
             <MagnifyingGlassIcon /> 
           </div>

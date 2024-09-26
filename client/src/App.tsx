@@ -11,9 +11,9 @@ export const App: React.FC = () => {
     <CategoryProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/items" element={<ItemsPage />} />
-          <Route path="/items/:id" element={<ItemPage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/items' element={<ItemsPage />} />
+          <Route path='/items/:id' element={<ItemPage />} />
         </Routes>
       </Router>
     </CategoryProvider>

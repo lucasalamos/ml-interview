@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from 'react';
-import { getItemGateway, GetItemResponseType } from '../gateways/get-item.gateway';
+import { getItemGateway } from '../gateways/get-item.gateway';
 import { Item } from '../entities/item.entity';
 import { useParams } from 'react-router-dom';
 import { conditionsMapper } from '../utils/conditions-mapper';
@@ -60,8 +60,8 @@ export const ItemPage: React.FC = () => {
       header={header}
       content={(
         <div>
-          <p className='p'>{categoryContext.join(" - ")}</p>
-          <div className="item">
+          <p className='p'>{categoryContext.join(' - ')}</p>
+          <div className='item'>
             <div className='summary'>
               <img className='image' src={item?.picture} alt='item-image'></img> 
               <div className='details'>
@@ -69,7 +69,7 @@ export const ItemPage: React.FC = () => {
                 <h3> {item?.title} </h3>
                 <div className='price'>
                   <h1> $ {item?.price.amount.toLocaleString().replace(/,/g, '.')}</h1>
-                  <p> {item && item.price.decimals.toString().length > 1 ? item?.price.decimals : item?.price.decimals.toString()+"0"} </p>
+                  <p> {item && item.price.decimals.toString().length > 1 ? item?.price.decimals : item?.price.decimals.toString()+'0'} </p>
                 </div>
                 <button className='button'>
                   Comprar

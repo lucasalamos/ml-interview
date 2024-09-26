@@ -1,5 +1,5 @@
-import { apiUrl } from "./api"
-import { ErrorResponse } from "./error"
+import { apiUrl } from './api'
+import { ErrorResponse } from './error'
 
 export interface GetItemResponseType {
   author: {
